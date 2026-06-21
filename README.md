@@ -1,21 +1,19 @@
-# Huginn Desktop
+# Huginn Deepfake Guard
 
-Антивирус от AI-мошенников. Детекция синтезированного голоса в реальном времени на устройстве.
+Антивирус от голосовых дипфейков и мошенников.
 
-## Стек
-
-- C# .NET 9 + WPF + MaterialDesignXaml
-- NAudio (WASAPI loopback)
-- ONNX Runtime
-- SQLite
-
-## Структура
-
-- `src/Huginn.App/` — WPF приложение (UI, трей, уведомления)
-- `src/Huginn.Core/` — ядро (сервисы: захват аудио, обработка, алерты, БД)
-- `src/Huginn.MlBridge/` — ONNX Runtime обёртка + модель
-- `ml/` — ML-пайплайн (Python, конвертация в ONNX)
+## Функционал
+- Захват системного аудио (WASAPI Loopback).
+- Анализ в реальном времени через AASIST (ONNX).
+- Уведомления при обнаружении синтезированного голоса.
+- История срабатываний (SQLite).
+- Полностью офлайн работа.
 
 ## Сборка
+1. Установите .NET 9 SDK.
+2. Установите Python и зависимости: `pip install torch onnx librosa soundfile numpy onnxscript`.
+3. Сгенерируйте ONNX модель: `python ml/convert_to_onnx.py`.
+4. Соберите проект: `dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true`.
 
-dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true
+## Установка
+Используйте Inno Setup с файлом `huginn_setup.iss` для создания установщика.
