@@ -1,6 +1,10 @@
-[Bb]in/
-[Oo]bj/
-*.user
-*.suo
-.vs/
-ml/models/
+__pycache__/
+*.py[cod]
+*.class
+.env
+.venv
+venv/
+ENV/
+bin/
+obj/
+data/

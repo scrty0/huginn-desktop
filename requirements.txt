@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+python-multipart
+websockets
+pydantic
+pydantic-settings
+faster-whisper
+silero-vad
+aiosip
+aiogram
+aiosqlite
+openai
+requests
+numpy
+scipy
+librosa
+python-dotenv

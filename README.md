@@ -1,19 +1,36 @@
-# Huginn Deepfake Guard
+# Huginn AI-Охранник
 
-Антивирус от голосовых дипфейков и мошенников.
+Корпоративная система защиты от телефонного мошенничества через AI.
 
-## Функционал
-- Захват системного аудио (WASAPI Loopback).
-- Анализ в реальном времени через AASIST (ONNX).
-- Уведомления при обнаружении синтезированного голоса.
-- История срабатываний (SQLite).
-- Полностью офлайн работа.
+## Концепция
+Система подключается к АТС по протоколу SIP, распознает речь в реальном времени и анализирует ее с помощью LLM (GPT-4o-mini или Llama 3) на предмет мошеннических паттернов.
 
-## Сборка
-1. Установите .NET 9 SDK.
-2. Установите Python и зависимости: `pip install torch onnx librosa soundfile numpy onnxscript`.
-3. Сгенерируйте ONNX модель: `python ml/convert_to_onnx.py`.
-4. Соберите проект: `dotnet publish -c Release -r win-x64 --self-contained true -p:PublishSingleFile=true`.
+## Технологии
+- **FastAPI**: API и WebSocket для дашборда.
+- **faster-whisper**: Распознавание речи (STT).
+- **silero-vad**: Детекция голоса.
+- **aiogram**: Уведомления в Telegram.
+- **OpenAI / Ollama**: Анализ контекста диалога.
 
 ## Установка
-Используйте Inno Setup с файлом `huginn_setup.iss` для создания установщика.
+1. Запустите скрипт настройки:
+   ```bash
+   python scripts/setup.py
+   ```
+2. Установите зависимости:
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Настройте `.env` (добавьте ключи Telegram и OpenAI).
+
+## Запуск
+```bash
+python main.py
+```
+Дашборд доступен по адресу: http://localhost:8000/dashboard
+
+## Демо
+Проверка системы на текстовом сценарии:
+```bash
+python demo/demo.py
+```
